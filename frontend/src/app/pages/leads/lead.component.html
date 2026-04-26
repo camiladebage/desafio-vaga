@@ -1,0 +1,42 @@
+<div class="p-6">
+  <h1 class="text-2xl font-bold mb-4">Leads</h1>
+
+  <div class="flex gap-2 mb-4">
+    <input [(ngModel)]="search"
+           placeholder="Buscar..."
+           class="border p-2 rounded w-full"/>
+
+    <select [(ngModel)]="status" class="border p-2 rounded">
+      <option value="">Todos</option>
+      <option>New</option>
+      <option>Qualified</option>
+      <option>Won</option>
+      <option>Lost</option>
+    </select>
+
+    <button (click)="load()"
+            class="bg-blue-500 text-white px-4 rounded">
+      Buscar
+    </button>
+  </div>
+
+  <table class="w-full border">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="p-2">Nome</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Tasks</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let lead of leads" class="border-t">
+        <td class="p-2">{{lead.name}}</td>
+        <td>{{lead.email}}</td>
+        <td>{{lead.status}}</td>
+        <td>{{lead.tasksCount}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
