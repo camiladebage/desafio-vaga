@@ -13,5 +13,5 @@ public class Lead
 public enum LeadStatus { New = 0, Qualified = 1, Won = 2, Lost = 3 }
 
 public record LeadCreateDto(string Name, string Email, LeadStatus? Status);
-public record LeadUpdateDto(string Name, string Email, LeadStatus Status);
+public record LeadUpdateDto(int Id, string Name, string Email, LeadStatus Status);
 public record LeadDto(int Id, string Name, string Email, LeadStatus Status, DateTime CreatedAt, DateTime UpdatedAt, int TasksCount);

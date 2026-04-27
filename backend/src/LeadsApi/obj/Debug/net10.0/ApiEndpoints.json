@@ -1,6 +1,27 @@
 [
   {
     "ContainingType": "LeadsController",
+    "Method": "Get",
+    "RelativePath": "api/leads",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.Nullable\u00601[[LeadStatus, LeadsApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LeadsController",
     "Method": "Create",
     "RelativePath": "api/leads/createLeads",
     "HttpMethod": "POST",
@@ -11,27 +32,6 @@
         "Name": "dto",
         "Type": "LeadCreateDto",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TasksController",
-    "Method": "Create",
-    "RelativePath": "api/leads/createTasks",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "TaskCreateDto",
-        "IsRequired": true
-      },
-      {
-        "Name": "leadId",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -53,48 +53,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "TasksController",
-    "Method": "Delete",
-    "RelativePath": "api/leads/deleteTasks",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "leadId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "taskId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LeadsController",
-    "Method": "Get",
-    "RelativePath": "api/leads/getLeads",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "search",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "status",
-        "Type": "System.Nullable\u00601[[LeadStatus, LeadsApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "LeadsController",
     "Method": "GetById",
     "RelativePath": "api/leads/getLeadsById",
@@ -104,22 +62,6 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TasksController",
-    "Method": "Get",
-    "RelativePath": "api/leads/getTasks",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "leadId",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -144,8 +86,66 @@
   },
   {
     "ContainingType": "TasksController",
+    "Method": "Create",
+    "RelativePath": "api/tasks/createTask",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TaskCreateDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "leadId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TasksController",
+    "Method": "Delete",
+    "RelativePath": "api/tasks/deleteTask",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leadId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "taskId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TasksController",
+    "Method": "Get",
+    "RelativePath": "api/tasks/getTasks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leadId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TasksController",
     "Method": "Update",
-    "RelativePath": "api/leads/updateTasks",
+    "RelativePath": "api/tasks/updateTask",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

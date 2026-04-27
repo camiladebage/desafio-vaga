@@ -12,30 +12,32 @@ public class LeadsController : ControllerBase
         _context = context;
     }
 
-    [HttpGet("getLeads")]
+    [HttpGet()]
     public async Task<IActionResult> Get(string? search, LeadStatus? status)
     {
-        var query = _context.Leads.Include(l => l.Tasks).AsQueryable();
+        var query = _context.Leads
+            .Include(lead => lead.Tasks)
+            .AsQueryable();
 
         if (!string.IsNullOrEmpty(search))
         {
-            query = query.Where(l => l.Name.Contains(search) || l.Email.Contains(search));
+            query = query.Where(lead => lead.Name.Contains(search) || lead.Email.Contains(search));
         }
 
         if (status.HasValue)
         {
-            query = query.Where(l => l.Status == status);
+            query = query.Where(lead => lead.Status == status);
         }
 
         var result = await query
-        .Select(l => new LeadDto(
-            l.Id,
-            l.Name,
-            l.Email,
-            l.Status,
-            l.CreatedAt,
-            l.UpdatedAt,
-            l.Tasks.Count
+        .Select(lead => new LeadDto(
+            lead.Id,
+            lead.Name,
+            lead.Email,
+            lead.Status,
+            lead.CreatedAt,
+            lead.UpdatedAt,
+            lead.Tasks.Count
         ))
         .ToListAsync();
 
@@ -46,20 +48,20 @@ public class LeadsController : ControllerBase
     public async Task<IActionResult> GetById(int id)
     {
         var query = _context.Leads
-            .Include(l => l.Tasks)
-            .Where(L => L.Id == id);
+            .Include(lead => lead.Tasks)
+            .Where(lead => lead.Id == id);
 
         var result = await query
-            .Select(l => new LeadDto(
-                l.Id,
-                l.Name,
-                l.Email,
-                l.Status,
-                l.CreatedAt,
-                l.UpdatedAt,
-                l.Tasks.Count
+            .Select(lead => new LeadDto(
+                lead.Id,
+                lead.Name,
+                lead.Email,
+                lead.Status,
+                lead.CreatedAt,
+                lead.UpdatedAt,
+                lead.Tasks.Count
             ))
-            .ToListAsync();
+            .FirstOrDefaultAsync();
 
         return Ok(result);
     }
@@ -68,7 +70,9 @@ public class LeadsController : ControllerBase
     public async Task<IActionResult> Create(LeadCreateDto dto)
     {
         if (dto.Name.Length < 3)
+        {
             return BadRequest("Nome inválido");
+        }
 
         var lead = new Lead
         {
@@ -87,7 +91,9 @@ public class LeadsController : ControllerBase
     public async Task<IActionResult> Update(LeadUpdateDto dto)
     {
         if (dto.Name.Length < 3)
+        {
             return BadRequest("Nome inválido");
+        }
 
         var lead = new Lead
         {

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
-[Route("api/leads")]
+[Route("api/tasks")]
 public class TasksController : ControllerBase
 {
     private readonly AppDbContext _context;
@@ -15,29 +15,32 @@ public class TasksController : ControllerBase
     [HttpGet("getTasks")]
     public async Task<IActionResult> Get(int leadId)
     {
-        var query = _context.Tasks.Include(l => l.Lead)
-            .Where(t => t.LeadId == leadId);
+        var query = _context.Tasks
+            .Include(task => task.Lead)
+            .Where(task => task.LeadId == leadId);
 
         var result = await query
-            .Select(t => new TaskDto(
-                t.Id,
-                t.LeadId,
-                t.Title,
-                t.DueDate,
-                t.Status,
-                t.CreatedAt,
-                t.UpdatedAt
+            .Select(task => new TaskDto(
+                task.Id,
+                task.LeadId,
+                task.Title,
+                task.DueDate,
+                task.Status,
+                task.CreatedAt,
+                task.UpdatedAt
             ))
             .ToListAsync();
 
         return Ok(result);
     }
 
-    [HttpPost("createTasks")]
-    public async Task<IActionResult> Create(TaskCreateDto dto,int leadId)
+    [HttpPost("createTask")]
+    public async Task<IActionResult> Create(TaskCreateDto dto, int leadId)
     {
         if (dto.Title.Length < 3)
+        {
             return BadRequest("Nome inválido");
+        }
 
         var task = new TaskItem
         {
@@ -53,11 +56,13 @@ public class TasksController : ControllerBase
         return Ok(task);
     }
 
-    [HttpPut("updateTasks")]
+    [HttpPut("updateTask")]
     public async Task<IActionResult> Update(TaskCreateDto dto, int leadId, int taskId)
     {
         if (dto.Title.Length < 3)
+        {
             return BadRequest("Nome inválido");
+        }
 
         var task = await _context.Tasks
             .Where(t => t.LeadId == leadId && t.Id == taskId)
@@ -73,7 +78,7 @@ public class TasksController : ControllerBase
         return Ok(task);
     }
 
-    [HttpDelete("deleteTasks")]
+    [HttpDelete("deleteTask")]
     public async Task<IActionResult> Delete(int leadId, int taskId)
     {
         var task = await _context.Tasks

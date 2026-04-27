@@ -1,0 +1,74 @@
+<div class="p-6 max-w-xl mx-auto">
+  <h1 class="text-2xl font-bold mb-6">Editar Lead</h1>
+  @if (leadData) {
+  <div class="mb-6">
+    <table class="w-full border-collapse border border-gray-300">
+      <thead>
+        <th class="border border-gray-300 p-2 text-left">ID</th>
+        <th class="border border-gray-300 p-2 text-left">Nome</th>
+        <th class="border border-gray-300 p-2 text-left">Email</th>
+        <th class="border border-gray-300 p-2 text-left">Status</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border border-gray-300 p-2">{{ leadData.id }}</td>
+          <td class="border border-gray-300 p-2">{{ leadData.name }}</td>
+          <td class="border border-gray-300 p-2">{{ leadData.email }}</td>
+          <td class="border border-gray-300 p-2">
+            <span>
+              {{getStatusText(leadData.status)}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  }
+
+  <form (ngSubmit)="update()" #form="ngForm" class="flex flex-col gap-4">
+    <div>
+      <label class="block mb-1 font-medium">Nome</label>
+      <input type="text" name="name" [(ngModel)]="name" required minlength="3" #nameRef="ngModel"
+        class="w-full border p-2 rounded" />
+
+      @if (nameRef.invalid && nameRef.touched) {
+      <p class="text-red-500 text-sm mt-1">
+        Nome deve ter pelo menos 3 caracteres
+      </p>
+      }
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium">Email</label>
+      <input type="email" name="email" [(ngModel)]="email" required email #emailRef="ngModel"
+        class="w-full border p-2 rounded" />
+
+      @if (emailRef.invalid && emailRef.touched) {
+      <p class="text-red-500 text-sm mt-1">
+        Email inválido
+      </p>
+      }
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium">Status</label>
+      <select name="status" [(ngModel)]="status" class="w-full border p-2 rounded">
+        <option value="New">New</option>
+        <option value="Qualified">Qualified</option>
+        <option value="Won">Won</option>
+        <option value="Lost">Lost</option>
+      </select>
+    </div>
+
+    <div class="flex gap-2 mt-4">
+      <button type="submit" [disabled]="form.invalid"
+        class="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50">
+        Atualizar
+      </button>
+
+      <button type="button" (click)="cancel()" class="bg-gray-300 px-4 py-2 rounded">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,73 @@
+<div class="p-6">
+  <h1 class="text-2xl font-bold mb-4 text-center">Leads</h1>
+  <button (click)="createLead()"
+          class="my-4 bg-green-500 text-white p-4 rounded">
+    ➕ Criar Lead
+  </button>
+  <div class="flex gap-2 mb-4">
+    <input [(ngModel)]="search"
+           placeholder="Buscar..."
+           class="border p-2 rounded w-full"/>
+
+    <select [(ngModel)]="status" class="border p-2 rounded">
+      <option value="">Todos</option>
+      <option>New</option>
+      <option>Qualified</option>
+      <option>Won</option>
+      <option>Lost</option>
+    </select>
+
+    <button (click)="load()"
+            class="bg-blue-500 text-white px-4 rounded">
+      Buscar
+    </button>
+  </div>
+
+  <table class="w-full border">
+    <thead class="bg-gray-100">
+      <tr>
+        <th></th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Criado em</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (lead of leads; track lead.id) {
+        <tr class="border-t">
+          <td>
+            <div class="flex gap-2 m-2">
+              <button (click)="createTask(lead.id)" 
+                class="bg-gray-500 text-white px-3 py-1 rounded-md text-sm transition flex items-center gap-1">
+                ➕ Adicionar task
+              </button>
+              <button (click)="editLead(lead.id)" 
+                class="bg-gray-500 text-white px-3 py-1 rounded-md text-sm transition flex items-center gap-1">
+                ✏️ Editar
+              </button>
+              <button (click)="deleteLead(lead.id)" 
+                class="bg-gray-500 text-white px-3 py-1 rounded-md text-sm transition flex items-center gap-1">
+                ❌ Deletar
+              </button>
+              <button (click)="viewTasks(lead.id)" 
+                class="bg-gray-500 text-white px-3 py-1 rounded-md text-sm transition flex items-center gap-1">
+                📄 Ver tasks
+              </button>
+            </div>
+          </td>
+          <td class="text-center">{{lead.name}}</td>
+          <td class="text-center">{{lead.email}}</td>
+          <td class="text-center">
+            <span [class]="getStatusClass(lead.status)">
+              {{getStatusText(lead.status)}}
+            </span>
+          </td>
+          <td class="text-center">
+            {{ adjustDate(lead.createdAt) | date:'dd/MM/yyyy HH:mm' }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

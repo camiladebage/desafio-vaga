@@ -2093,23 +2093,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Camila Debage\\.nuget\\packages\\": {},
+    "C:\\Users\\camila.souza\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Dev\\Projetos\\desafio-vaga\\backend\\src\\LeadsApi\\LeadsApi.csproj",
+      "projectUniqueName": "C:\\Users\\camila.souza\\source\\repos\\desafio-vaga\\backend\\src\\LeadsApi\\LeadsApi.csproj",
       "projectName": "LeadsApi",
-      "projectPath": "D:\\Dev\\Projetos\\desafio-vaga\\backend\\src\\LeadsApi\\LeadsApi.csproj",
-      "packagesPath": "C:\\Users\\Camila Debage\\.nuget\\packages\\",
-      "outputPath": "D:\\Dev\\Projetos\\desafio-vaga\\backend\\src\\LeadsApi\\obj\\",
+      "projectPath": "C:\\Users\\camila.souza\\source\\repos\\desafio-vaga\\backend\\src\\LeadsApi\\LeadsApi.csproj",
+      "packagesPath": "C:\\Users\\camila.souza\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\camila.souza\\source\\repos\\desafio-vaga\\backend\\src\\LeadsApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Camila Debage\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\camila.souza\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2118,6 +2118,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

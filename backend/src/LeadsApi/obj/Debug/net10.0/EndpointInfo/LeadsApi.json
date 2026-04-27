@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/leads/getLeads": {
+    "/api/leads": {
       "get": {
         "tags": [
           "Leads"
@@ -139,7 +139,7 @@
         }
       }
     },
-    "/api/leads/getTasks": {
+    "/api/tasks/getTasks": {
       "get": {
         "tags": [
           "Tasks"
@@ -161,7 +161,7 @@
         }
       }
     },
-    "/api/leads/createTasks": {
+    "/api/tasks/createTask": {
       "post": {
         "tags": [
           "Tasks"
@@ -202,7 +202,7 @@
         }
       }
     },
-    "/api/leads/updateTasks": {
+    "/api/tasks/updateTask": {
       "put": {
         "tags": [
           "Tasks"
@@ -251,7 +251,7 @@
         }
       }
     },
-    "/api/leads/deleteTasks": {
+    "/api/tasks/deleteTask": {
       "delete": {
         "tags": [
           "Tasks"
@@ -314,6 +314,10 @@
       "LeadUpdateDto": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "name": {
             "type": "string",
             "nullable": true
